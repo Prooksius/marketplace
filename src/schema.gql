@@ -1,0 +1,166 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  """User ID"""
+  _id: ID!
+
+  """Username"""
+  username: String!
+
+  """User email"""
+  email: String!
+
+  """User role"""
+  role: Float!
+
+  """Access token"""
+  accessToken: String
+
+  """Owned products"""
+  products: [Product!]!
+}
+
+type Attribute {
+  """Attribute ID"""
+  _id: ID!
+
+  """Attribute name"""
+  name: String!
+
+  """Attribute sort order"""
+  sortOrder: Int!
+
+  """Products"""
+  products: [Product!]!
+}
+
+type ProductAttribute {
+  """Product attribute ID"""
+  _id: ID!
+
+  """Product"""
+  product: Product
+
+  """Attribute"""
+  attribute: Attribute
+
+  """Product attribute value"""
+  value: String!
+}
+
+type Product {
+  """Product ID"""
+  _id: ID!
+
+  """Product title"""
+  title: String!
+
+  """Product price"""
+  price: Float!
+
+  """Product description"""
+  description: String!
+
+  """Product owner"""
+  owner: User
+
+  """Product attributes"""
+  attributes: [ProductAttribute!]!
+}
+
+type Query {
+  product(input: FindProductInput!): Product
+  products: [Product!]!
+  findUser(input: FindUserInput!): User!
+  profile: User!
+  findAllUsers: [User!]!
+  attribute(input: FindAttributeInput!): Attribute
+  attributes: [Attribute!]!
+  productAttribute(input: FindProductAttributeInput!): ProductAttribute
+  productAttributes: [ProductAttribute!]!
+}
+
+input FindProductInput {
+  """Product ID"""
+  _id: ID!
+}
+
+input FindUserInput {
+  """User ID"""
+  _id: ID!
+}
+
+input FindAttributeInput {
+  """Attribute ID"""
+  _id: ID!
+}
+
+input FindProductAttributeInput {
+  """Product attribute ID"""
+  _id: ID!
+}
+
+type Mutation {
+  createProduct(input: CreateProductInput!): Product!
+  login(input: LoginUserInput!): User!
+  register(input: CreateUserInput!): User!
+  createAttribute(input: CreateAttributeInput!): Attribute!
+  createProductAttribute(input: CreateProductAttributeInput!): ProductAttribute!
+}
+
+input CreateProductInput {
+  """Product title"""
+  title: String!
+
+  """Product price"""
+  price: Float!
+
+  """Product description"""
+  description: String!
+
+  """Product owner ID"""
+  owner: String!
+}
+
+input LoginUserInput {
+  """Username"""
+  username: String!
+
+  """Password"""
+  password: String!
+}
+
+input CreateUserInput {
+  """Username"""
+  username: String!
+
+  """Password"""
+  password: String!
+
+  """User email"""
+  email: String!
+
+  """User role"""
+  role: Float!
+}
+
+input CreateAttributeInput {
+  """Attribute title"""
+  name: String!
+
+  """Attribute sort order"""
+  sortOrder: Int!
+}
+
+input CreateProductAttributeInput {
+  """Product attribute value"""
+  value: String!
+
+  """Product ID"""
+  product: String!
+
+  """Attribute ID"""
+  attribute: String!
+}
