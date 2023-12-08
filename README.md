@@ -26,6 +26,16 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+This is a GraphQL project with MongoDB database.
+There are 4 entities present.
+1. Products
+2. Users
+3. Attributes
+4. Product attributes as many-to-many table between products and attributes
+
+Dataloader library is used to significantly reduce amount of DB requests due to well known "n+1" GraphQl problem.
+So to load all products including all 3 other tables as different level's relations only 4 DB requests needed.
+
 ## Installation
 
 ```bash
